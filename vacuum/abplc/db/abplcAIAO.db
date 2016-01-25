@@ -1,0 +1,145 @@
+## Belows are setting for XGS analog signal.
+
+record(ai, "$(IOC):CNV2_READ")
+{
+	field(DESC, "CNV_GAUGE VALUE")
+	field(SCAN, ".1 second")
+	field(INP, "@$(PLC) READ_CNV2_FLOAT")
+	field(DTYP, "EtherIP")
+}
+
+record(ai, "$(IOC):AUX2_READ")
+{
+        field(DESC, "AUX_GAUGE VALUE")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) READ_AUX2_FLOAT")
+        field(DTYP, "EtherIP")
+}
+
+
+## Belows are setting for OSAKA TMP controller analog signal
+
+record(ai, "$(IOC):TOTAL_TIME1")
+{
+        field(DESC, "TMP_OPERATING TIME")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) READ_TIME_DINT")
+        field(DTYP, "EtherIP")
+}
+
+
+## Belows are settign to read the analog moudle value of AB PLC.
+
+record(ai, "$(IOC):AI_CH0")
+{
+        field(DESC, "Channel 0 Input value")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) Local:4:I.Ch0Data")
+        field(DTYP, "EtherIP")
+	
+}
+
+record(ai, "$(IOC):AI_CH1")
+{
+	field(DESC, "Channel 1 Input value")
+	field(SCAN, ".1 second")
+	field(INP, "@$(PLC) Local:4:I.Ch1Data")
+	field(DTYP, "EtherIP")
+}
+
+record(ai, "$(IOC):AI_CH2")
+{
+        field(DESC, "Channel 2 Input value")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) Local:4:I.Ch2Data")
+        field(DTYP, "EtherIP") 
+}
+
+
+record(ao, "$(IOC):AO_CH1")
+{
+        field(DESC, "Channel 1 Output value")
+        field(SCAN, ".1 second")
+        field(OUT, "@$(PLC) ANA_VIR_OUT1")
+        field(DTYP, "EtherIP") 
+}
+
+record(ao, "$(IOC):AO_CH2")
+{
+        field(DESC, "Channel 2 Output value")
+        field(SCAN, ".1 second")
+        field(OUT, "@$(PLC) ANA_VIR_OUT2")
+        field(DTYP, "EtherIP") 
+}
+
+record(ao, "$(IOC):AO_CH3")
+{
+        field(DESC, "Channel 3 Output value")
+        field(SCAN, ".1 second")
+        field(OUT, "@$(PLC) ANA_VIR_OUT3")
+        field(DTYP, "EtherIP") 
+}
+
+record(ao, "$(IOC):AO_CH4")
+{
+        field(DESC, "Channel 4 Output value")
+        field(SCAN, ".1 second")
+        field(OUT, "@$(PLC) ANA_VIR_OUT4")
+        field(DTYP, "EtherIP") 
+}
+
+
+
+## Belows are buffer test tag. Now, buffer limit is setted 800. If IOC had many PV,IOC occurred  buffer error.
+
+
+
+record(ai, "$(IOC):BUFFER_1")
+ {
+        field(DESC, "BUFFER_TEST1")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) BUFFER1")
+        field(DTYP, "EtherIP")
+ }
+
+record(ai, "$(IOC):BUFFER_2")
+ {
+        field(DESC, "BUFFER_TEST2")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) BUFFER2")
+        field(DTYP, "EtherIP")
+ }
+
+record(ai, "$(IOC):BUFFER_3")
+ {
+        field(DESC, "BUFFER_TEST3")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) BUFFER3")
+        field(DTYP, "EtherIP")
+ }
+
+record(ai, "$(IOC):BUFFER_4")
+ {
+        field(DESC, "BUFFER_TEST4")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) BUFFER4")
+        field(DTYP, "EtherIP")
+ }
+
+record(ai, "$(IOC):BUFFER_5")
+ {
+        field(DESC, "BUFFER_TEST5")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) BUFFER5")
+        field(DTYP, "EtherIP")
+ }
+
+record(ai, "$(IOC):BUFFER_6")
+ {
+        field(DESC, "BUFFER_TEST6")
+        field(SCAN, ".1 second")
+        field(INP, "@$(PLC) BUFFER6")
+        field(DTYP, "EtherIP")
+ }
+
+

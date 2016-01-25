@@ -1,0 +1,50 @@
+##belows are string settings for XGS600.
+ 
+record(stringin, "$(IOC):CNV2_value")
+{
+        field(DESC, "CNV2_PRESSURE")
+        field(SCAN, ".5 second")
+        field(INP, "@$(PLC) READ_CNV2_DIS")
+        field(DTYP, "EtherIP")
+}
+
+record(stringin, "$(IOC):AUX2_value")
+{
+        field(DESC, "AUX2_PRESSURE")
+        field(SCAN, ".5 second")
+        field(INP, "@$(PLC) READ_AUX2_DIS")
+        field(DTYP, "EtherIP")
+}
+
+record(stringin, "$(IOC):PRES_READ")
+{
+        field(DESC, "TORR_SETTING")
+        field(SCAN, ".5 second")
+        field(INP, "@$(PLC) PRES_READ_UNIT")
+        field(DTYP, "EtherIP")
+}
+
+
+
+## Belows are setting for TMP controller.
+
+record(stringin, "$(IOC):CRC_READ")
+{
+        field(DESC, "CRC_SETTING")
+        field(SCAN, ".5 second")
+        field(INP, "@$(PLC) CRC_READ")
+        field(DTYP, "EtherIP")
+}
+
+
+
+## Belows are setting for TMP error.
+
+record(stringin, "$(IOC):TMP_ALARM")
+{
+        field(DESC, "TMP_FAIL")
+        field(SCAN, ".5 second")
+        field(INP, "@$(PLC) TMP_ERR_SEND")
+        field(DTYP, "EtherIP")
+}
+
