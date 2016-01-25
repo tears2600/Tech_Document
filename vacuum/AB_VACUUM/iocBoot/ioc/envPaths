@@ -1,5 +1,0 @@
-epicsEnvSet("ARCH","linux-x86_64")
-epicsEnvSet("IOC","ioc")
-epicsEnvSet("TOP","/home/hjson/epics/R3.14.12.5/siteApps/AB_VACUUM")
-epicsEnvSet("EPICS_BASE","/home/hjson/epics/R3.14.12.5/base")
-epicsEnvSet("EHTER_IP","/home/hjson/epics/R3.14.12.5/epicsLibs/synApps_5_8/support/ether_ip-ether_ip-2-26")
