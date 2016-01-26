@@ -424,21 +424,269 @@ Source 속성에는 변환할 String 형태의 Tag를 입력한다.\
 
 Dest 속성에는 변횐된 데이터가 저장될 Tag를 입력한다.\\
 
-위의 예에서 'READ\_CNV2\_DIS'라는 Tag에 Float 형태로 저장되어 최종적으로 CSS로 꾸며지는 UI에서 모니터링 된다.
+위의 예에서 'READ\_CNV2\_DIS'라는 Tag에 Float 형태로 저장되어 최종적으로 CSS로 꾸며지는 UI에서 모니터링 된다.\\
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./picture/timer_bit.jpg}
+	\caption{Communication time chart}
+	\label{fig:}
+\end{figure}
+
+Figure 21은 AB PLC와 XGS-600 및 TC-353과의 데이터 송수신을 위한 Time chart 이다. \
+S는 메시지 보내기 신호, Bf는 Buffer, Tr은 Transmit bit, R은 메시지 받기 신호를 말한다.\
+각 신호는 Timer로 구성되어 데이터 송수신을 위한 시간 간격을 조절할 수 있다. 
 
 \newpage
 
 \chapter{EPICS IOC 와의 연동}
-여기에서는 EPICS IOC와 AB PLC 데이터 교환에 대해서 알아본다. EPICS 환경을 구성하는 방법은 Script\_for\_epics(https://github.com/jeonghanlee/scripts\_for\_epics)를 참조하기 바라며, EPICS IOC와 AB PLC 간의 데이터 통신을 위한 드라이버는 ehter-ip-2-26(ics-web.sns.ornl.gov/kasemir/etherip/)를 사용했다. 
+여기에서는 EPICS IOC와 AB PLC 데이터 교환에 대해서 알아본다. EPICS 환경을 구성하는 방법은 Script\_for\_epics(https://github.com/jeonghanlee/scripts\_for\_epics)를 참조하기 바라며, EPICS IOC와 AB PLC 간의 데이터 통신을 위한 드라이버는 ehter-ip-2-26(ics-web.sns.ornl.gov/kasemir/etherip/)를 사용했다. \\
 
-\section{st.cmd file 설정}
-EPICS IOC 생성 후 /iocBoot/ioc/st.cmd 파일에 다음과 같이 설정한다.
+\section{RELEASE file 설정}
+EPICS IOC 생성 후 ~/epics/R3.14.12.5/siteApps/IOC/configure/RELEASE 파일을 다음과 같이 설정한다. 파일의 경로는 PC의 EPICS의 환경에 따라 다르다.\\
 
 \begin{lstlisting}[style=termstyle]
-#!../../bin/linux-x86_64/ab
 
-## You may have to change ab to something else
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
+
+# If using the sequencer, point SNCSEQ at its top directory:
+#SNCSEQ=$(EPICS_BASE)/../modules/soft/seq
+
+# EPICS_BASE usually appears last so other apps can override stuff:
+EPICS_BASE=/home/hjson/epics/R3.14.12.5/base
+
+# Set RULES here if you want to take build rules from somewhere
+# other than EPICS_BASE:
+#RULES=/path/to/epics/support/module/rules/x-y
+
+EHTER_IP=/home/hjson/epics/R3.14.12.5/epicsLibs/synApps_5_8/support/ether_ip-ether_ip-2-26
+
+\end{lstlisting}
+
+RELEASE 파일은 supprot module의 경로를 지정해주는 파일이다. 여기에서는 AB PLC와 EPICS IOC간의 통신을 위한 EtherIP Driver(ether\_ip-ether\_ip-2-26)가 저장되어 있는 경로를 지정해 준다.\
+
+\section{Db Makefile 설정}
+
+Db Makefile은 AB PLC의 Tag를 EPICS IOC의 PV와 일치시키기 위한 db파일을 등록하는 파일이다. Tag의 데이터 형태에 따라 db파일을 생성한 후 Db 디렉토리에 추가해 준다. 현재의 시스템에서의 경로는 '/epics/R3.14.12.5/siteApps/AB\_VACUUM/ABPLCApp/Db/Makefile'이다.\
+ 
+\begin{lstlisting}[style=termstyle]
+
+TOP=../..
+include $(TOP)/configure/CONFIG
+#----------------------------------------
+#  ADD MACRO DEFINITIONS AFTER THIS LINE
+
+#----------------------------------------------------
+#  Optimization of db files using dbst (DEFAULT: NO)
+#DB_OPT = YES
+
+#----------------------------------------------------
+# Create and install (or just install) into <top>/db
+# databases, templates, substitutions like this
+#DB += xxx.db
+DB += abplcDIDO.db
+DB += abplcAIAO.db
+DB += abplcSTRINGIN.db
+
+\end{lstlisting}
+
+\section{src Makefile 설정}
+
+src Makefile은 support module의 Library 및 dbd 파일의 정보를 등록하는 파일이다. 현재 시스템에서의 경로는 '/epics/R3.14.12.5/siteApps/AB\_VACUUM/ABPLCApb/src/Makefile'이다.\
+
+\begin{lstlisting}[style=termstyle]
+
+TOP=../..
+
+include $(TOP)/configure/CONFIG
+#----------------------------------------
+#  ADD MACRO DEFINITIONS AFTER THIS LINE
+#=============================
+
+#=============================
+# Build the IOC application
+
+PROD_IOC = ABPLC
+# ABPLC.dbd will be created and installed
+DBD += ABPLC.dbd
+
+# ABPLC.dbd will be made up from these files:
+ABPLC_DBD += base.dbd
+
+# Include dbd files from all support applications:
+#ABPLC_DBD += xxx.dbd
+
+ABPLC_DBD += ether_ip.dbd
+
+# Add all the support libraries needed by this IOC
+#ABPLC_LIBS += xxx
+ABPLC_LIBS += ether_ip
+
+# ABPLC_registerRecordDeviceDriver.cpp derives from ABPLC.dbd
+ABPLC_SRCS += ABPLC_registerRecordDeviceDriver.cpp
+
+# Build the main IOC entry point on workstation OSs.
+ABPLC_SRCS_DEFAULT += ABPLCMain.cpp
+ABPLC_SRCS_vxWorks += -nil-
+
+# Add support from base/src/vxWorks if needed
+#ABPLC_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+
+# Finally link to the EPICS Base libraries
+ABPLC_LIBS += $(EPICS_BASE_IOC_LIBS)
+
+#===========================
+
+include $(TOP)/configure/RULES
+#----------------------------------------
+#  ADD RULES AFTER THIS LINE
+
+
+
+\end{lstlisting}
+
+
+\section{Record file 작성}
+
+Record file은 AB PLC에서 사용되고 있는 Tag를 EPICS IOC PV와 일치시키기 위해 작성하는 파일이다. EPICS record file을 작성하는 Reference를 EPICS 홈페이지에서 확인할 수 있다. 다음은 현재 시스템에서 사용한 OSAKA TMP 컨트롤러 및 XGS-600 컨트롤러의 제어를 위해 생성한 AB PLC의 Tag를 데이터 형태에 따라 나누어 작성한 파일들의 일부이다.\\
+
+아래의 record file은 Digital Input/Output 값을 제어하기 위한 파일이다. 현재 시스템에서의 경로는 '/epics/R3.14.12.5/siteApps/AB\_VACUUM/ABPLCApp/Db/abplcDIDO.db'이다.\\
+
+\begin{lstlisting}[style=termstyle]
+
+record(bi, "$(IOC):TMP_ACCEL")
+{
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) TMP_ACCEL")
+field(DTYP, "EtherIP")
+field(ZNAM, "False")
+field(ONAM, "True")
+}
+
+record(bi, "$(IOC):TMP_NORMAL")
+{
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) TMP_NORMAL")
+field(DTYP, "EtherIP")
+field(ZNAM, "False")
+field(ONAM, "True")
+}
+
+record(bi, "$(IOC):TMP_ERROR")
+{
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) TMP_ERROR")
+field(DTYP, "EtherIP")
+field(ZNAM, "False")
+field(ONAM, "True")
+}
+
+record(bi, "$(IOC):TMP_BRAKE")
+{
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) TMP_BRAKE")
+field(DTYP, "EtherIP")
+field(ZNAM, "False")
+field(ONAM, "True")
+}
+
+record(bi, "$(IOC):TMP_RMT_STATUS")
+{
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) TMP_RMT_STATUS")
+field(DTYP, "EtherIP")
+field(ZNAM, "False")
+field(ONAM, "True")
+}
+
+\end{lstlisting}
+
+	 	
+아래의 record file은 Analog Input/Output 값을 제어하기 위한 파일이다. 현재 시스템에서의 경로는 '/epics/R3.14.12.5/siteApps/AB\_VACUUM/ABPLCApp/Db/abplcAIAO.db'이다.\\
+
+
+\begin{lstlisting}[style=termstyle]
+
+record(ai, "$(IOC):CNV2_READ")
+{
+field(DESC, "CNV_GAUGE VALUE")
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) READ_CNV2_FLOAT")
+field(DTYP, "EtherIP")
+}
+
+record(ai, "$(IOC):AUX2_READ")
+{
+field(DESC, "AUX_GAUGE VALUE")
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) READ_AUX2_FLOAT")
+field(DTYP, "EtherIP")
+}
+
+
+## Belows are setting for OSAKA TMP controller analog signal
+
+record(ai, "$(IOC):TOTAL_TIME1")
+{
+field(DESC, "TMP_OPERATING TIME")
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) READ_TIME_DINT")
+field(DTYP, "EtherIP")
+}
+
+
+## Belows are settign to read the analog moudle value of AB PLC.
+
+record(ai, "$(IOC):AI_CH0")
+{
+field(DESC, "Channel 0 Input value")
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) Local:4:I.Ch0Data")
+field(DTYP, "EtherIP")
+
+}
+
+record(ai, "$(IOC):AI_CH1")
+{
+field(DESC, "Channel 1 Input value")
+field(SCAN, ".1 second")
+field(INP, "@$(PLC) Local:4:I.Ch1Data")
+field(DTYP, "EtherIP")
+}
+
+\end{lstlisting}
+
+아래의 record file은 String 값을 제어하기 위한 파일이다. 현재 시스템에서의 경로는 '~/epics/R3.14.12.5/siteApps/AB\_VACUUM/ABPLCApp/Db/STRINGIN.db'이다.\\
+		
+\begin{lstlisting}[style=termstyle]
+
+record(stringin, "$(IOC):CNV2_value")
+{
+field(DESC, "CNV2_PRESSURE")
+field(SCAN, ".5 second")
+field(INP, "@$(PLC) READ_CNV2_DIS")
+field(DTYP, "EtherIP")
+}
+
+record(stringin, "$(IOC):AUX2_value")
+{
+field(DESC, "AUX2_PRESSURE")
+field(SCAN, ".5 second")
+field(INP, "@$(PLC) READ_AUX2_DIS")
+field(DTYP, "EtherIP")
+}
+
+\end{lstlisting}
+
+\section{st.cmd file 작성}
+
+st.cmd 파일은 EPICs IOC를 실행하는 파일이다. AB PLC의 주소 및 데이터를 송수신하는 buffer 크기 등을 설정해 준다.\\
+
+\begin{lstlisting}[style=termstyle]
+
+#!../../bin/linux-x86_64/ABPLC
+
+## You may have to change ioc to something else
 ## everywhere it appears in this file
 
 < envPaths
@@ -446,107 +694,60 @@ EPICS IOC 생성 후 /iocBoot/ioc/st.cmd 파일에 다음과 같이 설정한다
 cd "${TOP}"
 
 ## Register all support components
-dbLoadDatabase "dbd/ab.dbd"
-ab_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/ABPLC.dbd"
+ABPLC_registerRecordDeviceDriver pdbbase
 
-EIP_buffer_limit(800)
+## Load record instances
+## dbLoadTemplate "db/userHost.substitutions"
+## dbLoadRecords "db/dbSubExample.db", "user=hjsonHost"
+
+dbLoadRecords("db/abplcDIDO.db","PLC=AB, IOC=ABPLC")
+dbLoadRecords("db/abplcAIAO.db","PLC=AB, IOC=ABPLC")
+dbLoadRecords("db/abplcSTRINGIN.db","PLC=AB, IOC=ABPLC")
+
+## Set this to see messages from mySub
+#var mySubDebug 1
+
+## Run this to trace the stages of iocInit
+#traceIocInit
+
+EIP_buffer_limit(500)
 
 drvEtherIP_init()
 
 drvEtherIP_define_PLC("AB","10.1.5.204",0)
 
-## Load record instances
-## dbLoadRecords("db/plc.db","PLC=AB, IOC=ab")
-dbLoadRecords("db/abplcDIDO.db","PLC=AB, IOC=ab")
-dbLoadRecords("db/abplcAIAO.db","PLC=AB, IOC=ab")
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-## Start any sequence programs
-#seq sncxxx,"user=hjsonHost"
 
 \end{lstlisting}
+
+\newpage
+
+\chapter{User Interface 구성}
+	
+현재 Demo Vacuum System의 UI는 Control System Studio(CSS)로 구성되어 있다. UI에서 EPICS IOC를 통해 시스템을 제어하는 변수는 아래와 같다.\\
+
 \begin{itemize}
-\item AB PLC configuration on st.cmd file
-\begin{itemize}
-\item EIP\_buffer\_limit	: AB PLC와 EPICS IOC간에 데이터를 송수신하는 buffer 값(PV 값이 많으면 적은 숫자를 입력한다.)\
-\item      : PLC로 쓰는 byte 크기
-\item bigEndian     : 1=bigEndian, 0=littleEndian
-\item recvTimeout   : PLC로부터 recvTimeout milliseconds이내에 값을 받지 못할 경우 접속을 끊는 시간
-\item sendIntervall : 출력을 sendIntervall milliseconds이내에 처리해야하는 시간
+	
+	\item Gate valve ON/OFF and status monitoring 
+	\item ANGLE valve ON/OFF and status monitoring	 
+	\item Convection gauge monitoring (XGS-600)
+	\item Full range gauge monitoring (XGS-600)
+	\item Reading unit setting (XGS-600)
+	\item TMP remote start/stop (TC-353)
+	\item TMP status monitoring (TC-353)
+	
 \end{itemize}
-\end{itemize}
 
-\section{record file 작성}
-/db/test1.db 파일을 다음과 같이 작성한다.
- 
- 
-\begin{lstlisting}[style=termstyle]
- ${TOP}/db
-\end{lstlisting}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{./picture/UI1.JPG}
+	\caption{UI configuration}
+	\label{fig:}
+\end{figure}
 
-\begin{lstlisting}[style=termstyle]
-record(bi, s7-status) {
-	        	field(DTYP, "S7plc stat")
-		        field(INP, "@Station:0")
-			field(SCAN, "I/O Intr")
-		        field(ZNAM, "disconnected")
-		        field(ONAM, "connected")
-		        field(ZSV, "MAJOR")
-		        field(FLNK, "s7-status-counter")
-}
-record(calc, s7-status-counter) {
-		        field(INPA, "s7-status-counter")
-	  	        field(CALC, "A+1")
-		        field(FLNK, "s7-disconnect-counter")
-}
-record(calc, s7-disconnect-counter) {
-		        field(INPA, "s7-status")
-		        field(INPB, "s7-disconnect-counter.LA")
-		        field(INPC, "s7-disconnect-counter")
-		        field(CALC, "(A=0&&B=1)?C+1:C")
-}
-record(bi, bi-1) {
-		        field(SCAN, "I/O Intr")
-		        field(DTYP, "S7plc")
-		        field(INP, "@Station:0/2 B=0 T=BYTE")
-}
-record(bi, bi-2) {
-		        field(SCAN, "I/O Intr")
-		        field(DTYP, "S7plc")
-		        field(INP, "@Station:0/2 B=1 T=BYTE")
-}
-record(bi, bi-3) {
-	        	field(SCAN, "I/O Intr")
-			field(DTYP, "S7plc")
-		        field(INP, "@Station:0/2 B=2 T=BYTE")
-}
-record(bi, bi-4) {
-		        field(SCAN, "I/O Intr")
-		        field(DTYP, "S7plc")
-		        field(INP, "@Station:0/2 B=3 T=BYTE")
-}
-record(bo, bo-1) {
-		        field(DTYP, "S7plc")
-		        field(OUT, "@Station:0/2 B=0 T=BYTE")
-		        field(PINI, "YES")
-}
-record(bo, bo-2) {
-		        field(DTYP, "S7plc")
-		        field(OUT, "@Station:0/2 B=1 T=BYTE")
-			field(PINI, "YES")
-}
-record(bo, bo-3) {
-	        	field(DTYP, "S7plc")
-			field(OUT, "@Station:0/2 B=2 T=BYTE")
-			field(PINI, "YES")
-}
-record(bo, bo-4) {
-		       field(DTYP, "S7plc")
-		       field(OUT, "@Station:0/2 B=3 T=BYTE")
-		       field(PINI, "YES")
-}
-
-\end{lstlisting}
+현재 Demo Vacuum Ststem의 Chamber 진공도는 2채널로 구성되어 0.5초 간격으로 각 채널의 정보를 모니터링 하고 있으며, TMP의 상태정보 또한 일정한 시간 간격으로 각 채널에 대한 정보를 모니터링 하고 있다. Quick appliance를 실행하여 일주일 단위로 진공도 및 EPICS IOC PV 데이터를 저장할 수 있게 구성하였다. 현재 시스템은 Rough Line, Fore Line에 대한 구분이 없고, 단순한 구성이므로 별도의 인터락 및 순차제어에 대한 로직은 구성하지 않았다. 추후 중이온가속기의 진공 시스템이 AB PLC로 구성될 시에는 사용되는 게이지 및 펌프에 따라 통신환경을 구성할 수 있도록 본 문서를 지속적으로 업데이트 할 예정이다.   
 
 \end{document}

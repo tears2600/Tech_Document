@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2016.1.20)  25 JAN 2016 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2016.1.20)  26 JAN 2016 10:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1350,6 +1350,12 @@ LaTeX Warning: Label `fig:' multiply defined.
 
 LaTeX Warning: Label `fig:' multiply defined.
 
+
+LaTeX Warning: Label `fig:' multiply defined.
+
+
+LaTeX Warning: Label `fig:' multiply defined.
+
 )
 \openout1 = `tech_vacuum_test.aux'.
 
@@ -1507,7 +1513,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 76--83
 
  []
 
-<./picture/configuration_diagram.jpg, id=100, 550.2156pt x 493.845pt>
+<./picture/configuration_diagram.jpg, id=116, 550.2156pt x 493.845pt>
 File: ./picture/configuration_diagram.jpg Graphic file (type jpg)
 
 <use ./picture/configuration_diagram.jpg>
@@ -1515,14 +1521,14 @@ Package pdftex.def Info: ./picture/configuration_diagram.jpg used on input line
  86.
 (pdftex.def)             Requested size: 418.25368pt x 375.41652pt.
  [2]
-<./picture/compact.JPG, id=111, 3276.24pt x 2457.18pt>
+<./picture/compact.JPG, id=127, 3276.24pt x 2457.18pt>
 File: ./picture/compact.JPG Graphic file (type jpg)
 
 <use ./picture/compact.JPG>
 Package pdftex.def Info: ./picture/compact.JPG used on input line 97.
 (pdftex.def)             Requested size: 334.60422pt x 250.94398pt.
 
-<./picture/vacuumsystem.JPG, id=112, 2457.18pt x 3276.24pt>
+<./picture/vacuumsystem.JPG, id=128, 2457.18pt x 3276.24pt>
 File: ./picture/vacuumsystem.JPG Graphic file (type jpg)
 
 <use ./picture/vacuumsystem.JPG>
@@ -1530,7 +1536,7 @@ Package pdftex.def Info: ./picture/vacuumsystem.JPG used on input line 108.
 (pdftex.def)             Requested size: 250.95476pt x 334.592pt.
  [3 <./picture/configuration_diagram.jpg>]
 [4 <./picture/compact.JPG>]
-<./picture/tag_local.JPG, id=131, 615.80063pt x 284.56313pt>
+<./picture/tag_local.JPG, id=147, 615.80063pt x 284.56313pt>
 File: ./picture/tag_local.JPG Graphic file (type jpg)
 
 <use ./picture/tag_local.JPG>
@@ -1541,7 +1547,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
  []
 
-<./picture/rslrinx.JPG, id=142, 955.31906pt x 420.82219pt>
+<./picture/rslrinx.JPG, id=158, 955.31906pt x 420.82219pt>
 File: ./picture/rslrinx.JPG Graphic file (type jpg)
 
 <use ./picture/rslrinx.JPG>
@@ -1557,7 +1563,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
 
-<./picture/module_regi.JPG, id=149, 293.59688pt x 210.03468pt>
+<./picture/module_regi.JPG, id=165, 293.59688pt x 210.03468pt>
 File: ./picture/module_regi.JPG Graphic file (type jpg)
 
 <use ./picture/module_regi.JPG>
@@ -1568,7 +1574,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 196--197
 
  []
 
-<./picture/module_search.JPG, id=150, 645.16031pt x 371.13657pt>
+<./picture/module_search.JPG, id=166, 645.16031pt x 371.13657pt>
 File: ./picture/module_search.JPG Graphic file (type jpg)
 
 <use ./picture/module_search.JPG>
@@ -1580,7 +1586,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 207--208
  []
 
 [8 <./picture/module_regi.JPG>] [9 <./picture/module_search.JPG>]
-<./picture/new_routine.JPG, id=162, 352.31625pt x 502.12593pt>
+<./picture/new_routine.JPG, id=178, 352.31625pt x 502.12593pt>
 File: ./picture/new_routine.JPG Graphic file (type jpg)
 
 <use ./picture/new_routine.JPG>
@@ -1601,7 +1607,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 230--231
 
  []
 
-<./picture/routine_setting.JPG, id=163, 287.57437pt x 201.00093pt>
+<./picture/routine_setting.JPG, id=179, 287.57437pt x 201.00093pt>
 File: ./picture/routine_setting.JPG Graphic file (type jpg)
 
 <use ./picture/routine_setting.JPG>
@@ -1616,28 +1622,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 242--244
 
  []
 
-<./picture/menu.JPG, id=170, 542.025pt x 236.38312pt>
+<./picture/menu.JPG, id=186, 542.025pt x 236.38312pt>
 File: ./picture/menu.JPG Graphic file (type jpg)
  <use ./picture/menu.JPG>
 Package pdftex.def Info: ./picture/menu.JPG used on input line 249.
 (pdftex.def)             Requested size: 397.3397pt x 173.29044pt.
 
 [11 <./picture/routine_setting.JPG> <./picture/menu.JPG>]
-<./picture/input1.JPG, id=177, 223.58531pt x 98.61844pt>
+<./picture/input1.JPG, id=193, 223.58531pt x 98.61844pt>
 File: ./picture/input1.JPG Graphic file (type jpg)
 
 <use ./picture/input1.JPG>
 Package pdftex.def Info: ./picture/input1.JPG used on input line 262.
 (pdftex.def)             Requested size: 250.95476pt x 110.69264pt.
 
-<./picture/input_tag.JPG, id=178, 368.1253pt x 295.85532pt>
+<./picture/input_tag.JPG, id=194, 368.1253pt x 295.85532pt>
 File: ./picture/input_tag.JPG Graphic file (type jpg)
 
 <use ./picture/input_tag.JPG>
 Package pdftex.def Info: ./picture/input_tag.JPG used on input line 271.
 (pdftex.def)             Requested size: 250.95476pt x 201.69359pt.
 
-<./picture/coil.JPG, id=179, 149.8097pt x 110.66344pt>
+<./picture/coil.JPG, id=195, 149.8097pt x 110.66344pt>
 File: ./picture/coil.JPG Graphic file (type jpg)
 
 <use ./picture/coil.JPG>
@@ -1653,14 +1659,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 287--288
  []
 
 [12 <./picture/input1.JPG> <./picture/input_tag.JPG>]
-<./picture/ladder_com.JPG, id=186, 234.8775pt x 216.05719pt>
+<./picture/ladder_com.JPG, id=202, 234.8775pt x 216.05719pt>
 File: ./picture/ladder_com.JPG Graphic file (type jpg)
 
 <use ./picture/ladder_com.JPG>
 Package pdftex.def Info: ./picture/ladder_com.JPG used on input line 293.
 (pdftex.def)             Requested size: 250.95476pt x 230.84592pt.
  [13 <./picture/coil.JPG> <./picture/ladder_com.JPG>] <./picture/pointIO.JPG, i
-d=194, 2457.18pt x 3276.24pt>
+d=210, 2457.18pt x 3276.24pt>
 File: ./picture/pointIO.JPG Graphic file (type jpg)
 
 <use ./picture/pointIO.JPG>
@@ -1677,7 +1683,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 312--314
  []
 
 [14 <./picture/pointIO.JPG>]
-<./picture/sending.JPG, id=201, 520.94624pt x 301.8778pt>
+<./picture/sending.JPG, id=217, 520.94624pt x 301.8778pt>
 File: ./picture/sending.JPG Graphic file (type jpg)
 
 <use ./picture/sending.JPG>
@@ -1688,7 +1694,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 328--330
 
  []
 
-<./picture/transmitbit.JPG, id=202, 523.20468pt x 146.04562pt>
+<./picture/transmitbit.JPG, id=218, 523.20468pt x 146.04562pt>
 File: ./picture/transmitbit.JPG Graphic file (type jpg)
 
 <use ./picture/transmitbit.JPG>
@@ -1703,7 +1709,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 340--341
 
  []
 
-<./picture/receiving.JPG, id=209, 523.9575pt x 301.125pt>
+<./picture/receiving.JPG, id=226, 523.9575pt x 301.125pt>
 File: ./picture/receiving.JPG Graphic file (type jpg)
 
 <use ./picture/receiving.JPG>
@@ -1745,7 +1751,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 387--388
 
  []
 
-[17] <./picture/read_ladder.JPG, id=223, 235.63031pt x 484.81125pt>
+[17] <./picture/read_ladder.JPG, id=239, 235.63031pt x 484.81125pt>
 File: ./picture/read_ladder.JPG Graphic file (type jpg)
 
 <use ./picture/read_ladder.JPG>
@@ -1771,34 +1777,120 @@ Underfull \hbox (badness 10000) in paragraph at lines 425--426
 
  []
 
-[19]
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 446
+
+Underfull \hbox (badness 10000) in paragraph at lines 427--428
+
+ []
+
+<./picture/timer_bit.jpg, id=245, 290.0436pt x 28.908pt>
+File: ./picture/timer_bit.jpg Graphic file (type jpg)
+
+<use ./picture/timer_bit.jpg>
+Package pdftex.def Info: ./picture/timer_bit.jpg used on input line 431.
+(pdftex.def)             Requested size: 209.12683pt x 20.84372pt.
+ [19 <./picture/timer_bit.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 443--444
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 446--447
+
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 450
 .
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [20] [21]
+)
+Overfull \hbox (33.91222pt too wide) in paragraph at lines 470--471
+\LUC/nanummj/m/n/10.95/c7 X \LUC/nanummj/m/n/10.95/c2 Ü¤\LUC/nanummj/m/n/10.95/
+d1 \\LUC/nanummj/m/n/10.95/c5 Ð\LUC/nanummj/m/n/10.95/c1 ^^\\LUC/nanummj/m/n/10
+.95/c7 X \LUC/nanummj/m/n/10.95/ac ½\LUC/nanummj/m/n/10.95/b8 \\LUC/nanummj/m/n
+/10.95/b2 ” \OT1/cmr/m/n/10.95 '/epic-s/R3.14.12.5/siteApps/AB[]VACUUM/ABPLCApp
+/Db/Makefile'
+ []
+
+[20]
+Overfull \hbox (20.10184pt too wide) in paragraph at lines 495--496
+\LUC/nanummj/m/n/10.95/c2 Ü¤\LUC/nanummj/m/n/10.95/d1 \\LUC/nanummj/m/n/10.95/c
+5 Ð\LUC/nanummj/m/n/10.95/c1 ^^\\LUC/nanummj/m/n/10.95/c7 X \LUC/nanummj/m/n/10
+.95/ac ½\LUC/nanummj/m/n/10.95/b8 \\LUC/nanummj/m/n/10.95/b2 ” \OT1/cmr/m/n/10.
+95 '/epic-s/R3.14.12.5/siteApps/AB[]VACUUM/ABPLCApb/src/Makefile'
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 551--552
+
+ []
+
+[21]
+Overfull \hbox (9.5778pt too wide) in paragraph at lines 553--554
+\LUC/nanummj/m/n/10.95/c1 ^^\\LUC/nanummj/m/n/10.95/c7 X \LUC/nanummj/m/n/10.95
+/ac ½\LUC/nanummj/m/n/10.95/b8 \\LUC/nanummj/m/n/10.95/b2 ” \OT1/cmr/m/n/10.95 
+'/epic-s/R3.14.12.5/siteApps/AB[]VACUUM/ABPLCApp/Db/abplcDIDO.db'
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
+
+ []
+
 [22]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 552.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 552.
+Overfull \hbox (8.96945pt too wide) in paragraph at lines 605--606
+\LUC/nanummj/m/n/10.95/c1 ^^\\LUC/nanummj/m/n/10.95/c7 X \LUC/nanummj/m/n/10.95
+/ac ½\LUC/nanummj/m/n/10.95/b8 \\LUC/nanummj/m/n/10.95/b2 ” \OT1/cmr/m/n/10.95 
+'/epic-s/R3.14.12.5/siteApps/AB[]VACUUM/ABPLCApp/Db/abplcAIAO.db'
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 605--606
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 659--660
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 683--684
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 730--731
+
+ []
+
+<./picture/UI1.JPG, id=505, 905.63344pt x 630.85687pt>
+File: ./picture/UI1.JPG Graphic file (type jpg)
+ <use ./picture/UI1.JPG>
+Package pdftex.def Info: ./picture/UI1.JPG used on input line 746.
+(pdftex.def)             Requested size: 418.25368pt x 291.35281pt.
+
+[25 <./picture/UI1.JPG>] [26]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 753.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 753.
  (./tech_vacuum_test.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 552.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 552.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 753.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 753.
 Package rerunfilecheck Info: File `tech_vacuum_test.out' has not changed.
-(rerunfilecheck)             Checksum: E41136667F52E569AB91FBC9BA368131;789.
+(rerunfilecheck)             Checksum: 7300FC128D0E43207D9D344565654281;1041.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 552.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 753.
  ) 
 Here is how much of TeX's memory you used:
- 20622 strings out of 493105
- 320276 string characters out of 6137072
- 645393 words of memory out of 5000000
- 23562 multiletter control sequences out of 15000+600000
+ 20928 strings out of 493105
+ 324410 string characters out of 6137072
+ 531396 words of memory out of 5000000
+ 23721 multiletter control sequences out of 15000+600000
  39252 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 50i,12n,72p,767b,1920s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 50i,12n,72p,843b,1920s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
@@ -1863,10 +1955,10 @@ d5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/nanumtype1/nanummjmd6.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/nanumtype1/nanummjmd7.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sftt0800.pfb>
-Output written on tech_vacuum_test.pdf (22 pages, 9825477 bytes).
+Output written on tech_vacuum_test.pdf (26 pages, 10003698 bytes).
 PDF statistics:
- 580 PDF objects out of 1000 (max. 8388607)
- 466 compressed objects within 5 object streams
- 147 named destinations out of 1000 (max. 500000)
- 192 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 784 PDF objects out of 1000 (max. 8388607)
+ 662 compressed objects within 7 object streams
+ 292 named destinations out of 1000 (max. 500000)
+ 234 words of extra memory for PDF output out of 10000 (max. 10000000)
 
