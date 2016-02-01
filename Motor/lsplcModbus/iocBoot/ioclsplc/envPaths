@@ -1,0 +1,4 @@
+epicsEnvSet("ARCH","linux-x86_64")
+epicsEnvSet("IOC","ioclsplc")
+epicsEnvSet("TOP","/home/sonhyungjoo/epics/R3.14.12.5/siteApps/lsplcModbus")
+epicsEnvSet("EPICS_BASE","/home/sonhyungjoo/epics/R3.14.12.5/base")
