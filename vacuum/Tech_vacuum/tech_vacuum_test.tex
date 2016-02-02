@@ -20,7 +20,7 @@
 	
 \newcommand{\technumber}{
   RAON Control-Document Series\\
-  Revision : v1.0,   Release : January 21, 2014}
+  Revision : v1.0,   Release : January 21, 2016}
 \title{\textbf{Configuration of the Demo Vacuum system using AB PLC on the EPICS}}
 
 \author{Hyungjoo Son \\
@@ -54,8 +54,8 @@ Demo Vacuum System(DVS)는 크게 장치부와 제어부로 나눌 수 있다. �
 \item Convection Gauge(CG)  : Convec Torr P-type
 \item Pull range Gauge      : FKG-730
 \item Gauge Controller      : XGS-600
-\item Gate Valve            : 
-\item Angle Valve           : 
+\item Gate Valve            : SSE51200
+\item Angle Valve           : SSEPBK025A
 \item Dry pump				:IDP-15
 \end{itemize}
 
@@ -680,7 +680,7 @@ field(DTYP, "EtherIP")
 
 \section{st.cmd file 작성}
 
-st.cmd 파일은 EPICs IOC를 실행하는 파일이다. AB PLC의 주소 및 데이터를 송수신하는 buffer 크기 등을 설정해 준다.\\
+st.cmd 파일은 EPICS IOC를 실행하는 파일이다. AB PLC의 주소 및 데이터를 송수신하는 buffer 크기 등을 설정해 준다.\\
 
 \begin{lstlisting}[style=termstyle]
 
